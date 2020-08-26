@@ -1,0 +1,42 @@
+.divManage{
+}
+
+.menuAdmin{
+    background-color:whitesmoke;
+    height: 1000px;
+    width: 800px;
+}
+.headerAdmin{
+    background-color: orangered;
+    height: 70px;
+    background-color:brown;
+    width:100%;
+}
+
+.divManage{
+    display: flex;
+}
+.divDataMana{
+    margin-left: 20%;
+}
+.divMenu{
+    display: flex;
+}
+.divMenu a{
+    padding-left: 30px;
+    float: right;
+}
+/* ---------------Table----------- */
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 600px;
+
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;    
+  }
+.divTable{
+    margin-top: 20px;
+}

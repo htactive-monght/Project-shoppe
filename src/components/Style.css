@@ -1,0 +1,29 @@
+.divForm{
+    background-color: #fff;
+    box-shadow: 0 3px 10px 0;
+    border-radius: .25rem;
+    box-sizing: border-box;
+    margin-top: 70px;
+    padding: 30px;
+    width: 600px;
+    height: auto;
+    /* margin-left: 26px; */
+    margin-bottom: 89px;
+    margin-left: 300px;
+}
+
+.divForm input{
+    margin-bottom: 10px;
+    padding: .75rem;
+    color: inherit;
+    width: 400px;
+    margin-left: 10%;
+}
+.divForm button{
+    width: 400px;
+    margin-left: 10%;
+    height: 40px; 
+    color: #fff;
+    background-color: #ee4d2d;
+    border: none;
+}
