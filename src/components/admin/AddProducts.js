@@ -5,8 +5,13 @@ import { Redirect } from 'react-router-dom'
 import '../Style.css'
 import Footer from'../webPage/Footer';
 import '../../App.css'
-
-
+import { Row, Col, Input } from 'antd';
+const { Search } = Input;
+const sty = {
+    color: 'orange',
+    backgroundcolor: 'orangered',
+    width:700,
+}
 
 function Addproducts() {
     const [name, setName] = useState("");
@@ -15,6 +20,7 @@ function Addproducts() {
     const [category, setCategory] = useState("");
     const [avata, setAvata] = useState(null);
     const [rollback, setRollBack] = useState(false)
+    const [rollbackHome, setRollBackHome] = useState(false)
 
     const Add = (name, price, quantity, category) => {
         var productId = database.ref().child('products').push().key;
@@ -63,15 +69,33 @@ function Addproducts() {
         return <Redirect to='/ProductsList' />
     }
 
+    const rollBackHome = () => {
+        setRollBackHome(true)
+    }
+
+    if (rollbackHome) {
+        return <Redirect to='/' />
+    }
     return (
 
         <div className="contents">
-        <div className="header">
-            {/* <Header /> */}
+        <div className="headeradd">
+            <Row className="center">
+                    <Col span={5} className="logoadd">
+                        <img className="logos" src="y-nghia-logo-shopee.jpg" width="200px" height="150px"></img> 
+                    </Col>
+                    <Col span={19} > 
+                    <div class="vertical-menu">
+                        <div className="addhearder">
+                        <a href="#home"><Search style={sty} placeholder="input search text" onSearch={value => console.log(value)} enterButton /></a>
+                        <a href="#home" onClick={()=>rollBack()}>View products</a>
+                        <a href="#home" onClick={()=>rollBackHome()}> LogOut</a>
+                        </div>
+                     </div>
+                    </Col>        
+            </Row>
         </div>
-        
         <div>
-            <ArrowLeftOutlined onClick={rollBack} />
             <div className='divForm'>
                 <h2>ADD PRODUCTS</h2>
                 <input type='text' value={name} placeholder='Enter your product name' onChange={e => setName(e.target.value)} /><br />

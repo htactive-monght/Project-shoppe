@@ -5,7 +5,7 @@ import 'firebase/database'
 import 'firebase/storage'
 
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyCKt1Y9uNhRSLbyiqzHQZAFO778RTBqMIk",
   authDomain: "project-intern-a363c.firebaseapp.com",
   databaseURL: "https://project-intern-a363c.firebaseio.com",
@@ -16,7 +16,9 @@ var firebaseConfig = {
   measurementId: "G-GGC4Y439D5"
 };
    firebase.initializeApp(firebaseConfig);
-   const firebaseAuth = firebase.auth()
+   const auth = firebase.auth()
    const database = firebase.database()
    const storage = firebase.storage()
-   export{firebaseAuth,database,storage}
+   export{auth,database,storage}
+
+   

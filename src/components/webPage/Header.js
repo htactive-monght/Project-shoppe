@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Row, Col, Input } from 'antd';
 import { AudioOutlined,ShoppingCartOutlined} from '@ant-design/icons';
-import {BrowserRouter as Link} from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
+// import {BrowserRouter } from 'react-router-dom';
+import { Redirect ,Link} from 'react-router-dom'
 
+ 
 import OrderProduct from './OrderProducts'
 const { Search } = Input;
 const sty = {
     color: 'orange'
 }
 function Header(props) {
-    const {cart} = props;
+    const {cart, clearCart, deleteItemCart} = props;
     const [signIn, setSignIn] = useState(false)
     const [signUp, setSignUp] = useState(false)
 
@@ -45,8 +46,9 @@ function Header(props) {
                                 <a href="#home">Thông báo </a>
                                 <a href="#home">Trợ giúp </a>
                                 <a onClick={signUpRedirect}>Đăng ký </a>
-                                <a onClick={signInRedirect}>Đăng nhập </a>
-                            </div>
+                                {/* <a onClick={signInRedirect}>Đăng nhập </a> */}
+                                <Link to="/SignIn"> Đăng nhập </Link>  
+                         </div>
                         </div>
                     </Col>
             </Row>
@@ -68,7 +70,7 @@ function Header(props) {
                 </Col>
                 <Col span={6}>
                     <Row>
-                        <Col span={5}> <OrderProduct order={cart}/></Col>
+                        <Col span={5}> <OrderProduct order={cart} clearCart={clearCart} deleteItemCart={deleteItemCart}/></Col>
                         <Col span={6}> {[...cart].length}</Col>
                     </Row>         
                 </Col>

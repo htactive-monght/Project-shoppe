@@ -2,27 +2,32 @@
 }
 
 .menuAdmin{
-    background-color:whitesmoke;
+    background-color:orangered;
     height: 1000px;
     width: 800px;
+    /* border-top: 1px solid white; */
 }
 .headerAdmin{
-    background-color: orangered;
+    background-color: orange;
     height: 70px;
-    background-color:brown;
     width:100%;
 }
-
+.headeradmin{
+    height: 55px;
+    width:100%;
+    background-color: orange;
+    padding-top: 10px;
+}
 .divManage{
     display: flex;
 }
 .divDataMana{
-    margin-left: 20%;
+    margin-left: 22%;
 }
-.divMenu{
+.divMenus{
     display: flex;
 }
-.divMenu a{
+.divMenus a{
     padding-left: 30px;
     float: right;
 }

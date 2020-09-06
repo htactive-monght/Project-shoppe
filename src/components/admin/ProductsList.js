@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Menu, Row, Col } from 'antd';
+import { Menu, Row, Col,Input } from 'antd';
 import './StylePrduct.css'
 import { Redirect } from 'react-router-dom'
-import { firebaseAuth, database } from '../../firebase/Index'
+import { database,auth } from '../../firebase/Index'
 import ModalUpdateProduct from './ModalUpdateProduct'
 
-
+const { Search } = Input;
+const sty = {
+    color: 'orange',
+    backgroundcolor: 'orangered',
+    width: 650,
+}
 function Productlist() {
     const [signOutSuccess, SetSignOutSuccess] = useState(false);
     const [addPrdSuccess, SetAddPrdSuccess] = useState(false);
@@ -41,7 +46,7 @@ function Productlist() {
 
 
     const signOutUser = () => {
-        firebaseAuth.signOut()
+        auth.signOut()
             .then(res => {
                 SetSignOutSuccess(true)
             })
@@ -65,7 +70,7 @@ function Productlist() {
                     <div >
                         <div >
                             <h2>Danh Sách Quản Lý</h2>
-                            <Menu style={{ width: 300 }} mode="vertical">
+                            <Menu style={{ width: 300, backgroundColor:'orange'}} mode="vertical">
                                 <Menu.Item key="1">Users</Menu.Item>
                                 <Menu.Item key="2">Products</Menu.Item>
                                 <Menu.Item key="3">Categories</Menu.Item>
@@ -75,12 +80,25 @@ function Productlist() {
                 </Col>
                 <Col span={18}>
                     <Row>
-                        <Col span={24} className="headerAdmin">
-                            <div className='divMenu'>
+                        <div className="headeradmin"> 
+                        <Row>
+                        <Col span={5} >
+                            <div className="divMenus">
                                 <a>User Email</a>
-                                <a><button onClick={signOutUser}>Logout</button></a>
+                                <a>Home</a>
                             </div>
                         </Col>
+                        <Col span={17} className="Searchss">
+                            <div>
+                               <Search className="Searchs" style={sty} placeholder="input search text"
+                             onSearch={value => console.log(value)} enterButton/>
+                            </div>
+                        </Col>
+                        <Col span={2} className="">
+                            <button onClick={signOutUser}>Logout</button>  
+                        </Col>
+                        </Row>
+                        </div>
                     </Row>
                     <Row>
                         <Col span={24}>

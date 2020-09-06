@@ -1,6 +1,4 @@
 import React, {component, useState } from "react";
-import {database,firebaseAuth, storage} from './firebase/Index'
-import logo from './logo.svg';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 import Homepage from './components/webPage/Homepage'
@@ -8,6 +6,8 @@ import Register from './components/Register'
 import SignIn from './components/SignIn'
 import ProductsList from './components/admin/ProductsList'
 import Addproducts from './components/admin/AddProducts'
+import Checkout from './components/webPage/Checkout'
+
 
 function App() {
   // const [user , setUser] = useState("");
@@ -26,6 +26,7 @@ function App() {
   //   })
   // }
 
+
   return (
    
     <div>
@@ -36,6 +37,7 @@ function App() {
         <Route  path= '/SignIn' exact component = {SignIn}/> 
         <Route  path= '/ProductsList' exact component = {ProductsList}/>        
         <Route  path= '/Addproducts' exact component = {Addproducts}/> 
+        <Route  path= '/Checkout' exact component = {Checkout}/> 
       </BrowserRouter>
     </div>
   );

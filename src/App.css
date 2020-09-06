@@ -13,6 +13,13 @@ img.logo {
   height: 77px;
   margin-left: 50px;
 }
+img.logos {
+  margin-top: 5px;
+  width: 214px;
+  height: 77px;
+  margin-left: 50px;
+}
+
 .vertical-menu {
   width: 100%;
 }
@@ -35,6 +42,19 @@ img.logo {
   width: 100%;
   height: 160px;
   color:white
+}
+.headeradd{
+  background-color: orangered;
+  width: 100%;
+  height: 100px;
+  color:white;
+  align-content: center;
+}
+.addhearder{
+  margin-top:15px;
+}
+.logoadd{
+  margin-top:5px;
 }
 .center{
   padding: 5px;
@@ -113,4 +133,31 @@ ant-carousel .slick-slide img{
     width: 100%;
     height: 400px;
     /* box-shadow: 0 0 black; */
+}
+.danhmuc{
+  margin-top: 12px;
+  background-color: whitesmoke;
+}
+.slideCon{
+  margin-top: 12px;
+}
+.menucons{
+  align-content: center;
+}
+.vertical-menus {
+  width: 100%;
+}
+.vertical-menus a {
+  color: black;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  float: left 
+}
+.vertical-menus a:hover {
+  background-color: #ccc;
+}
+.vertical-menus a.active {
+  background-color: #4CAF50;
+  color: white;
 }

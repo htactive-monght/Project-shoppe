@@ -9,6 +9,7 @@ import Slider from './Slider'
 
 
 
+
 function Content() {
     const [product, setProduct] = useState([]);
     const [cart, setCart] = useState([]);
@@ -25,25 +26,47 @@ function Content() {
             }
         });
     }, []);
+
+  
     const addToCart = product =>{
-        setCart([...cart, {...product}])
+        let newArrayItem = [...cart];
+        let quantityCart = newArrayItem.find((item)=>product.name === item.name);
+        if(quantityCart){
+            quantityCart.quantitys++;
+        }else{
+            quantityCart={
+                ...product,
+                quantitys: 1,
+            };
+            newArrayItem.push(quantityCart);
+        }
+        setCart(newArrayItem);
+    }
+    const deleteItemCart = (product) => {
+        const id = product;
+        setCart(cart.filter(item => item.id !== id));
+    }
+
+    const clearCart = ()=>{
+        setCart([]);
     }
     return (
         <div>
              <div className="header">
-                <Header cart = {cart}/>
+                <Header cart = {cart}
+                 clearCart= {clearCart} deleteItemCart={deleteItemCart}
+                 />
             </div>
             
             <div className="slider">
                 <Slider />
             </div>
         <div className="all_contents">
-           
             <Row className="abc">
                 {product.map(item => {
                     console.log(item,"item products");
                     return (
-                        <Col span={6}>
+                        <Col span={6} key={item.id}>
                             <div className="card ">
                                 <img  className="img" src={item.avata} width="200px" height="150px"></img>
                                 <div className="container">
@@ -55,9 +78,7 @@ function Content() {
                         </Col>
                     )
                 })}
-
             </Row>
-
         </div>
         </div>
     )
