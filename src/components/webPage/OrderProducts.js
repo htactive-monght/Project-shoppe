@@ -4,14 +4,13 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../../App.css';
 import './Order.css';
-import { Redirect, Link } from 'react-router-dom'
+import {  Link } from 'react-router-dom'
 
 
 
 function OrderProduct(props) {
     const [visible, setVisible] = useState(false);
     const { order, clearCart, deleteItemCart } = props;
-    const [comeCheckout, setComeCheckout] = useState(false)
     const [array, setArray] = useState([order])
     const [edit, setEdit] = useState(true)
     console.log(order, "aaaaaaaaaaaaaaaabbbbbb");
@@ -30,10 +29,6 @@ function OrderProduct(props) {
         setVisible(false);
     };
 
-
-    if (comeCheckout) {
-        return <Redirect to='/Checkout' />
-    }
 
 
     const totalPrice = () => {

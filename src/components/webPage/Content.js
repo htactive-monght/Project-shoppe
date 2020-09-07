@@ -7,12 +7,10 @@ import Header from './Header';
 import Slider from './Slider'
 
 
-
-
-
 function Content() {
     const [product, setProduct] = useState([]);
     const [cart, setCart] = useState([]);
+
     useEffect(() => {
         let ref = database.ref('/products');
         ref.on('value', snapshot => {
@@ -27,21 +25,43 @@ function Content() {
         });
     }, []);
 
-  
+    
     const addToCart = product =>{
-        let newArrayItem = [...cart];
-        let quantityCart = newArrayItem.find((item)=>product.name === item.name);
-        if(quantityCart){
-            quantityCart.quantitys++;
+        const userID = window.localStorage.getItem('KeyUser');
+        const userEmail = window.localStorage.getItem('EmailUser');
+        if(userID){
+            let newArrayItem = [...cart];
+            let quantityCart = newArrayItem.find((item)=>product.name === item.name);
+            if(quantityCart){
+                quantityCart.quantitys++;
+            }else{
+                quantityCart={
+                    ...product,
+                    quantitys: 1,
+                    userEmail: userEmail,
+                };
+                newArrayItem.push(quantityCart);
+            }
+            setCart(newArrayItem);
         }else{
-            quantityCart={
-                ...product,
-                quantitys: 1,
-            };
-            newArrayItem.push(quantityCart);
+            alert('Chưa Đăng nhập tài khoản của bạn');
         }
-        setCart(newArrayItem);
     }
+    // const addProductCart = ()=>{
+    //     const userID = window.localStorage.getItem('KeyUser');
+    //     var cartId = database.ref().child('cart').push().key;
+    //     database.ref(`cart${cartId}`).set({
+    //         userId: userID,
+    //         listPro: {
+    //             name: ,
+    //             quantitys:,
+    //             price: ,
+    //             status: ,
+    //         }
+           
+    //     })
+    // }
+  
     const deleteItemCart = (product) => {
         const id = product;
         setCart(cart.filter(item => item.id !== id));
@@ -64,7 +84,6 @@ function Content() {
         <div className="all_contents">
             <Row className="abc">
                 {product.map(item => {
-                    console.log(item,"item products");
                     return (
                         <Col span={6} key={item.id}>
                             <div className="card ">

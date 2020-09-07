@@ -18,7 +18,7 @@ function SignIn() {
     const [password, setPassword] = useState("");
     const [signInSuccess, SetSigInSuccess] = useState(false);
     const [signIndd, setSigIndd] = useState(false);
-    const [user, setUser] = useState("");
+
 
 
     const signin = (email, password) => {
@@ -26,10 +26,26 @@ function SignIn() {
             SetSigInSuccess(true)
         } else {
             auth.signInWithEmailAndPassword(email, password)
-                .then(res => backHomePage())
+                .then(res => {
+                //    let userInfor =  database.ref('/users' + userID);
+                //     userInfor.on('value', snapshot =>{
+                //         var data = (snapshot.val() || 'null');
+                //         setUser(data);
+                //     });
+                const userID = res.user.uid;
+                const emailUser = res.user.email;
+               ;
+                window.localStorage.setItem("KeyUser", userID );
+                window.localStorage.setItem("EmailUser", emailUser);
+                backHomePage();
+                })
                 .catch(err => console.log(err, "ko thành công"));
         }
     };
+
+
+
+
 
    
     if (signInSuccess) {

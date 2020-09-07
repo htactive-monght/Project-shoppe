@@ -20,7 +20,6 @@ function Checkout(props) {
         auth.onAuthStateChanged(userss => {
             setUser(userss);
             const userID = userss.uid;
-            console.log(userID,'id user');
             var rootRef = database.ref('users/' + userID);
             rootRef.once('value')
                 .then((snapshot) => {
@@ -32,7 +31,7 @@ function Checkout(props) {
 
     const payment = (name,email,phoneNumber,address) => { 
         if(currentUser.email===email){
-            alert('Thiều cha ca rerca cho');
+            alert('Ok');
             [...order].map(item=>{
                     database.ref(`OrderProducts/${item.id}`).set({
                         nameCustomer: name,

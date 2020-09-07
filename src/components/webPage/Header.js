@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Input } from 'antd';
-import { AudioOutlined,ShoppingCartOutlined} from '@ant-design/icons';
-// import {BrowserRouter } from 'react-router-dom';
 import { Redirect ,Link} from 'react-router-dom'
+import { auth } from '../../firebase/Index'
 
  
 import OrderProduct from './OrderProducts'
@@ -12,23 +11,17 @@ const sty = {
 }
 function Header(props) {
     const {cart, clearCart, deleteItemCart} = props;
-    const [signIn, setSignIn] = useState(false)
-    const [signUp, setSignUp] = useState(false)
 
-    const signInRedirect = () => {
-        setSignIn(true)
-    }
-    if (signIn) {
-        return <Redirect to='/SignIn' />
+ 
+    const logout = () => {
+        auth.signOut().then(function() {
+            window.localStorage.setItem('KeyUser', '');
+            window.localStorage.setItem('EmailUser', '');
+          }, function(error) {
+            alert('logout không thành công')          
+          });
     }
 
-
-    const signUpRedirect = () => {
-        setSignUp(true)
-    }
-    if (signUp) {
-        return <Redirect to='/Register'/>
-    }
     return (
         <div className="contents_Header">
             <Row className="center">
@@ -45,9 +38,9 @@ function Header(props) {
                             <div class="vertical-menu">
                                 <a href="#home">Thông báo </a>
                                 <a href="#home">Trợ giúp </a>
-                                <a onClick={signUpRedirect}>Đăng ký </a>
-                                {/* <a onClick={signInRedirect}>Đăng nhập </a> */}
+                                <Link to="/Register"> Đăng ký </Link>  
                                 <Link to="/SignIn"> Đăng nhập </Link>  
+                                <a onClick={logout}>Đăng xuất</a>
                          </div>
                         </div>
                     </Col>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { database, storage } from '../../firebase/Index'
-import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Redirect } from 'react-router-dom'
 import '../Style.css'
 import Footer from'../webPage/Footer';
