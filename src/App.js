@@ -6,38 +6,23 @@ import Register from './components/Register'
 import SignIn from './components/SignIn'
 import ProductsList from './components/admin/ProductsList'
 import Addproducts from './components/admin/AddProducts'
+import Payment from './components/webPage/Payment'
+import FormCheckout from './components/webPage/FormCheckout'
 import Checkout from './components/webPage/Checkout'
 
 
 function App() {
-  // const [user , setUser] = useState("");
-
-  // const componentDidMount=()=>{
-  //   authListener();
-  // }
-  // const authListener=()=>{
-  //   firebaseAuth.auth().onAuthStateChange((user)=>{
-  //     if(user){
-  //       setUser({user});
-  //     }
-  //     else{
-  //       setUser({user: null});
-  //     }
-  //   })
-  // }
-
-
   return (
-   
     <div>
-       {/* {user? (<ProductsList />):(<SignIn/>)}; */}
       <BrowserRouter>
         <Route  path= '/' exact component = {Homepage}/>
         <Route  path= '/Register' exact component = {Register}/> 
         <Route  path= '/SignIn' exact component = {SignIn}/> 
         <Route  path= '/ProductsList' exact component = {ProductsList}/>        
         <Route  path= '/Addproducts' exact component = {Addproducts}/> 
+        <Route  path= '/Payment' exact component = {Payment}/> 
         <Route  path= '/Checkout' exact component = {Checkout}/> 
+        <Route  path= '/FormCheckout' exact component = {FormCheckout}/> 
       </BrowserRouter>
     </div>
   );

@@ -3,7 +3,6 @@ import './Content.css'
 import { database } from '../../firebase/Index'
 import { Row, Col } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import Slider from './Slider'
 
 
 function Content() {
@@ -27,7 +26,6 @@ function Content() {
     
     const addToCart = product =>{
         const userID = window.localStorage.getItem('KeyUser');
-        const userEmail = window.localStorage.getItem('EmailUser');
         if(userID){
             let newArrayItem = [...cart];
             let quantityCart = newArrayItem.find((item)=>product.name === item.name);
@@ -62,11 +60,6 @@ function Content() {
   
     return (
         <div>
-           
-            
-            <div className="slider">
-                <Slider />
-            </div>
         <div className="all_contents">
             <Row className="abc">
                 {product.map(item => {

@@ -1,9 +1,10 @@
 import React, { useState,useEffect } from 'react';
 import { Row, Col, Input } from 'antd';
-import { Redirect ,Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { auth } from '../../firebase/Index'
 import { database } from '../../firebase/Index'
 import OrderProduct from './OrderProducts'
+
 
 const { Search } = Input;
 const sty = {
@@ -73,7 +74,6 @@ function Header(props) {
                         <a href="#home"> Áo dài </a>
                         <a href="#home">Mũ</a>
                         <a href="#home"> Giày thể thao </a>
-                       
                     </div> 
                 </Col>
                 <Col span={6}>
