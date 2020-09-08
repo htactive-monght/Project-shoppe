@@ -10,7 +10,6 @@ import HomePage from './Homepage';
 function Checkout(props) {
     const { array, totalPrice } = props.location.paramsOrder;
     const [nameCustomer, setNameCustomer] = useState("");
-    const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [address, setAddress] = useState("");
     
@@ -28,7 +27,6 @@ function Checkout(props) {
                         address: address
                 })
                 setNameCustomer('')
-                setEmail('')
                 setAddress('')
                 setPhoneNumber('')
             })    
@@ -74,7 +72,7 @@ function Checkout(props) {
             </Row>
             <button><Link to="/"></Link>Trở lại</button>
             <button 
-            onClick={() => payment(nameCustomer, email, phoneNumber,address)}>
+            onClick={() => payment(nameCustomer, phoneNumber,address)}>
                 Thanh toán</button>
         </div>
 
