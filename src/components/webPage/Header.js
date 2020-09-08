@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Row, Col, Input } from 'antd';
-import { Redirect ,Link} from 'react-router-dom'
+import {Redirect ,BrowserRouter as Router,Route,Link} from 'react-router-dom';
 import { auth } from '../../firebase/Index'
 import { database } from '../../firebase/Index'
 import OrderProduct from './OrderProducts'
@@ -61,7 +61,9 @@ function Header(props) {
                     </Col>
             </Row>
             <Row className="center ">
-                <Col span={6}><img className="logo" src="y-nghia-logo-shopee.jpg" width="200px" height="150px"></img></Col>
+                <Col span={6}>
+                    <Link to="/"><img className="logo" src="y-nghia-logo-shopee.jpg" width="200px" height="150px"></img></Link>
+                    </Col>
                 <Col span={12}>
                     <Search style={sty} placeholder="input search text" onSearch={value => console.log(value)} enterButton />
                     <div class="vertical-menu">

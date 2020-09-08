@@ -1,18 +1,20 @@
 import { Modal, Row, Col, Button, Menu } from 'antd';
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { database } from '../../firebase/Index'
 import 'antd/dist/antd.css';
 import '../../App.css';
 import './Order.css';
-import {  Link } from 'react-router-dom'
-
-
+import { Link } from 'react-router-dom'
 
 function OrderProduct(props) {
     const [visible, setVisible] = useState(false);
     const { array, order } = props;
     const [edit, setEdit] = useState(true)
+    const [arrayOrders, setArrayOrders] = useState(array);
+    useEffect(() => {
+        setArrayOrders(array);
+    }, [array])
     const userID = localStorage.getItem('KeyUser')
 
 
@@ -29,19 +31,38 @@ function OrderProduct(props) {
     };
 
     const totalPrice = () => {
-        const total = array.reduce((sum, { price, quantitys }) => parseInt(sum) + parseInt(price) * quantitys, 0);
+        const total = arrayOrders.reduce((sum, { price, quantitys }) => parseInt(sum) + parseInt(price) * quantitys, 0);
         return total;
     }
-
- 
 
     const deleteItemCart = (product) => {
         const id = product;
         database.ref(`cart/${userID}`).child(id).remove();
     }
-
-    const clearCart = ()=>{
-        database.ref(`cart/${userID}`).remove();    
+    const clearCart = () => {
+        database.ref(`cart/${userID}`).remove();
+    }
+    const tangSL = (idPro, quantities) => {
+        let soluongtang = quantities;
+        const listQuantityOrder = (arrayOrders || []).map(item => {
+            if (item.id === idPro) {
+                soluongtang++;
+                return { ...item, quantitys: soluongtang }
+            }
+            return item
+        })
+        setArrayOrders(listQuantityOrder);
+    }
+    const giamSL = (idPro, quantities) => {
+        let soluonggiam = quantities;
+        const listQuantityOrder = (arrayOrders || []).map(item => {
+            if (item.id === idPro) {
+                soluonggiam--;
+                return { ...item, quantitys: soluonggiam }
+            }
+            return item
+        })
+        setArrayOrders(listQuantityOrder);
     }
 
     return (
@@ -103,24 +124,23 @@ function OrderProduct(props) {
                             </div>
                                 </Col>
                             </Row>
-                            {array.map(cartPro => {
+                            {(arrayOrders || []).map(cartPro => {
                                 return (
                                     <Row key={cartPro.id}>
                                         <Col span={4}><img width='60px' height='60px' src={cartPro.avata} /></Col><br />
-                                        <Col span={4}>{cartPro.name}</Col><br />
-                                        <Col span={5}>{cartPro.price}</Col><br />
+                                        <Col span={6}>{cartPro.name}</Col><br />
+                                        <Col span={6}>{cartPro.price}</Col><br />
                                         <Col span={5}>
-                                            <button>+</button>
+                                            <button onClick={() => tangSL(cartPro.id, cartPro.quantitys)}>+</button>
                                             {cartPro.quantitys}
-                                            <button>-</button>
+                                            <button onClick={() => giamSL(cartPro.id, cartPro.quantitys)}>-</button>
                                         </Col><br />
-                                        <Col span={4}></Col><br />
                                         <Col span={2}><button onClick={() => deleteItemCart(cartPro.id)}>x</button></Col><br />
                                     </Row>
                                 )
-                        })
+                            })
                             }<br />
-                            <Link to={{pathname: '/Checkout', paramsOrder:{array, totalPrice}}}> Checkout your product</Link>
+                            <Link to={{ pathname: '/Checkout', paramsOrder: { array, totalPrice } }}> Checkout your product</Link>
                             <Row className="bottom">
                                 <Col span={12}>
                                     <div className="Headermodal1">

@@ -140,6 +140,8 @@ ant-carousel .slick-slide img{
 }
 .slideCon{
   margin-top: 12px;
+  width: 100%;
+  height: 250px;
 }
 .menucons{
   align-content: center;
@@ -160,4 +162,60 @@ ant-carousel .slick-slide img{
 .vertical-menus a.active {
   background-color: #4CAF50;
   color: white;
+}
+
+/************************detailProduct******************/
+.danhmucs{
+  margin-top: 12px;
+  background-color: white;
+}
+.vertical-menuss {
+  width: 100%;
+  
+}
+.vertical-menuss a {
+  color: black;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  float: left 
+}
+.vertical-menuss a:hover {
+  background-color: white;
+}
+.vertical-menuss a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.contentDetail{
+  background-color: whitesmoke;
+}
+.contentpicture{
+  background-color: white;
+  margin: 60px;
+}
+.contentPrices{
+  background-color: whitesmoke;
+  margin-right: 70px;
+}
+label{
+  background-color: orangered;
+}
+.buttomButtom{
+  padding-top: 10px;
+}
+.contentPricesss{
+  padding-top: 10px;
+  margin-right: 70px;
+}
+.contentpictureMain{
+  margin-left: 5px;
+  margin-top: 5px;
+  width: 400px;
+  height: 400px;
+}
+.contentDetailss{
+  height: 200px;
+  margin: 60px;
+  background-color: white;
 }

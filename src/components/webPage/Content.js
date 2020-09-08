@@ -3,7 +3,8 @@ import './Content.css'
 import { database } from '../../firebase/Index'
 import { Row, Col } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import Slider from './Slider'
+import Slider from './Slider';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 
 
 function Content() {
@@ -61,9 +62,7 @@ function Content() {
   
   
     return (
-        <div>
-           
-            
+        <div> 
             <div className="slider">
                 <Slider />
             </div>
@@ -73,7 +72,9 @@ function Content() {
                     return (
                         <Col span={6} key={item.id}>
                             <div className="card ">
-                                <img  className="img" src={item.avata} width="200px" height="150px"></img>
+                                <Link to={{ pathname:'/DetailProduct', params:{item}}}>
+                                    <img  className="img" src={item.avata} width="200px" height="250px"></img>
+                                </Link>
                                 <div className="container">
                                     <h2>{item.name}</h2>
                                     <p>Price: {item.price}</p>

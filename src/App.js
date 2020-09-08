@@ -7,6 +7,7 @@ import SignIn from './components/SignIn'
 import ProductsList from './components/admin/ProductsList'
 import Addproducts from './components/admin/AddProducts'
 import Checkout from './components/webPage/Checkout'
+import DetailProduct from './components/webPage/DetailProduct';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route  path= '/ProductsList' exact component = {ProductsList}/>        
         <Route  path= '/Addproducts' exact component = {Addproducts}/> 
         <Route  path= '/Checkout' exact component = {Checkout}/> 
+        <Route  path= '/DetailProduct' exact component = {DetailProduct}/> 
       </BrowserRouter>
     </div>
   );
