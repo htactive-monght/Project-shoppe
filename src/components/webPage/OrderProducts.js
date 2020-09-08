@@ -1,6 +1,7 @@
 import { Modal, Row, Col, Button, Menu } from 'antd';
-import React, { useState, } from 'react';
+import React, { useState, useEffect} from 'react';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import { database } from '../../firebase/Index'
 import 'antd/dist/antd.css';
 import '../../App.css';
 import './Order.css';
@@ -10,11 +11,9 @@ import {  Link } from 'react-router-dom'
 
 function OrderProduct(props) {
     const [visible, setVisible] = useState(false);
-    const { order, clearCart, deleteItemCart } = props;
-    const [array, setArray] = useState([order])
+    const { array, order } = props;
     const [edit, setEdit] = useState(true)
-    console.log(order, "aaaaaaaaaaaaaaaabbbbbb");
-    console.log(array, "bbbbbbbbbbbbbbbbbbbbbbb");
+    const userID = localStorage.getItem('KeyUser')
 
 
     const showModal = () => {
@@ -29,25 +28,21 @@ function OrderProduct(props) {
         setVisible(false);
     };
 
-
-
     const totalPrice = () => {
-        const total = order.reduce((sum, { price, quantitys }) => parseInt(sum) + parseInt(price) * quantitys, 0);
+        const total = array.reduce((sum, { price, quantitys }) => parseInt(sum) + parseInt(price) * quantitys, 0);
         return total;
     }
-    const tangSL = (quantitys) => {
-        let soluongtang = quantitys;
 
-        soluongtang++;
-        console.log(soluongtang, "aaaaaa")
+ 
+
+    const deleteItemCart = (product) => {
+        const id = product;
+        database.ref(`cart/${userID}`).child(id).remove();
     }
 
-    const giamSL = (quantitys) => {
-        let soluonggiam = quantitys;
-        console.log(soluonggiam, "aaaaaa")
-        soluonggiam--;
+    const clearCart = ()=>{
+        database.ref(`cart/${userID}`).remove();    
     }
-
 
     return (
         <div className="buttonUpdate">
@@ -108,16 +103,16 @@ function OrderProduct(props) {
                             </div>
                                 </Col>
                             </Row>
-                            {[...order].map(cartPro => {
+                            {array.map(cartPro => {
                                 return (
                                     <Row key={cartPro.id}>
                                         <Col span={4}><img width='60px' height='60px' src={cartPro.avata} /></Col><br />
                                         <Col span={4}>{cartPro.name}</Col><br />
                                         <Col span={5}>{cartPro.price}</Col><br />
                                         <Col span={5}>
-                                            <button onClick={() => tangSL(cartPro.quantitys)}>+</button>
+                                            <button>+</button>
                                             {cartPro.quantitys}
-                                            <button onClick={() => giamSL(cartPro.quantitys)}>-</button>
+                                            <button>-</button>
                                         </Col><br />
                                         <Col span={4}></Col><br />
                                         <Col span={2}><button onClick={() => deleteItemCart(cartPro.id)}>x</button></Col><br />
@@ -125,7 +120,7 @@ function OrderProduct(props) {
                                 )
                         })
                             }<br />
-                            <Link to={{pathname: '/Checkout', paramsOrder:{order, totalPrice}}}> Checkout your product</Link>
+                            <Link to={{pathname: '/Checkout', paramsOrder:{array, totalPrice}}}> Checkout your product</Link>
                             <Row className="bottom">
                                 <Col span={12}>
                                     <div className="Headermodal1">

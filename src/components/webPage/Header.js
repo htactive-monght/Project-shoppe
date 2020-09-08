@@ -1,26 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Row, Col, Input } from 'antd';
 import { Redirect ,Link} from 'react-router-dom'
 import { auth } from '../../firebase/Index'
-
- 
+import { database } from '../../firebase/Index'
 import OrderProduct from './OrderProducts'
+
 const { Search } = Input;
 const sty = {
     color: 'orange'
 }
 function Header(props) {
-    const {cart, clearCart, deleteItemCart} = props;
+    const [array, setArray] = useState([]);
+    const userID = localStorage.getItem('KeyUser')
 
- 
     const logout = () => {
         auth.signOut().then(function() {
             window.localStorage.setItem('KeyUser', '');
             window.localStorage.setItem('EmailUser', '');
+            setArray([]);
           }, function(error) {
             alert('logout không thành công')          
           });
     }
+
+    useEffect(() => {
+        const cartProduct = database.ref(`/cart/${userID}`);
+        cartProduct.on('value', snapshot => {
+            const valueCart = snapshot.val();
+            if (valueCart) {
+                const objectListPr = Object.keys(valueCart).map(key => ({
+                    ...valueCart[key],
+                    id: key
+                }));
+                setArray(objectListPr)
+            }
+        });
+    }, []);
 
     return (
         <div className="contents_Header">
@@ -63,8 +78,8 @@ function Header(props) {
                 </Col>
                 <Col span={6}>
                     <Row>
-                        <Col span={5}> <OrderProduct order={cart} clearCart={clearCart} deleteItemCart={deleteItemCart}/></Col>
-                        <Col span={6}> {[...cart].length}</Col>
+                        <Col span={5}> <OrderProduct array={array}  {...useEffect}/></Col>
+                        <Col span={6}> {array.length}</Col>
                     </Row>         
                 </Col>
             </Row>
