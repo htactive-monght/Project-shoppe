@@ -28,7 +28,6 @@ function Content() {
     
     const addToCart = product =>{
         const userID = window.localStorage.getItem('KeyUser');
-        const userEmail = window.localStorage.getItem('EmailUser');
         if(userID){
             let newArrayItem = [...cart];
             let quantityCart = newArrayItem.find((item)=>product.name === item.name);
@@ -66,7 +65,7 @@ function Content() {
             <div className="slider">
                 <Slider />
             </div>
-        <div className="all_contents">
+            <div className="all_contents">
             <Row className="abc">
                 {product.map(item => {
                     return (

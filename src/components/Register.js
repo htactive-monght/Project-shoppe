@@ -30,10 +30,11 @@ function  Register(){
           const userId = auth.currentUser.uid;
           database.ref(`users/${userId}`).set({
             email: email,
-            password:password
+            username: '',
+            phone: '',
+            address: '',
           })
           setEmail("")
-          setPassword("")
           setSignUpSuccess(true)
         })
         .catch(err=>console.log(err))

@@ -5,6 +5,7 @@ import { auth } from '../../firebase/Index'
 import { database } from '../../firebase/Index'
 import OrderProduct from './OrderProducts'
 
+
 const { Search } = Input;
 const sty = {
     color: 'orange'
@@ -75,7 +76,6 @@ function Header(props) {
                         <a href="#home"> Áo dài </a>
                         <a href="#home">Mũ</a>
                         <a href="#home"> Giày thể thao </a>
-                       
                     </div> 
                 </Col>
                 <Col span={6}>

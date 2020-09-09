@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 function OrderProduct(props) {
     const [visible, setVisible] = useState(false);
-    const { array, order } = props;
+    const { array } = props;
     const [edit, setEdit] = useState(true)
     const [arrayOrders, setArrayOrders] = useState(array);
     useEffect(() => {
@@ -87,12 +87,9 @@ function OrderProduct(props) {
                                     <div className="Headermodal2">
                                         <Button onClick={() => clearCart()}> clear cart</Button>
                                     </div>
-
                                 </Col>
-
                             </Row>
                             <Row className="Contentitems">
-
                                 <Col span={4}>
                                     <div className="Contentitem">
                                         Avata
@@ -138,9 +135,10 @@ function OrderProduct(props) {
                                         <Col span={2}><button onClick={() => deleteItemCart(cartPro.id)}>x</button></Col><br />
                                     </Row>
                                 )
-                            })
-                            }<br />
-                            <Link to={{ pathname: '/Checkout', paramsOrder: { array, totalPrice } }}> Checkout your product</Link>
+                            })}
+ 
+                            //  <Link to={{pathname: '/Checkout', params:{array, totalPrice}}}> Checkout your product</Link> 
+                            <Link to='/Checkout'>Mua hàng</Link>
                             <Row className="bottom">
                                 <Col span={12}>
                                     <div className="Headermodal1">
